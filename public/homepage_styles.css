@@ -1,0 +1,148 @@
+main {
+    padding: 5%;
+    border: none;
+}
+
+#logout {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 1%;
+}
+
+#filter {
+    width: clamp(40px, 80vw, 400px);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 10px;
+}
+
+#filter button {
+    background-color: transparent;
+    color: white;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#filter button:not(.selected) {
+    border: none;
+}
+
+#filter button:hover:not(.selected) {
+    background-color: aliceblue;
+    color: black;
+}
+
+.selected {
+    cursor: default;
+    border-bottom: white 5px solid;
+    border-radius: 0;
+}
+
+
+#guitar-exercises {
+    width: 90%;
+    margin: 0 auto 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5vh;
+    align-items: center;
+}
+
+.exercise {
+    background-color: #505081;
+    padding: 5%;
+    border-radius: 20px;
+    width: 80%;
+    max-width: 500px;
+    position: relative;
+
+    display: grid;
+    grid-template-columns: 1.5fr 0.5fr;
+    grid-template-rows: repeat(3, 1fr);
+    align-items: center;
+}
+
+.exercise * {
+    margin: 0;
+}
+
+.edit-exercise-btn {
+    position: absolute;
+    top: 0;
+    right: -5%;
+
+    width: 20%;
+    border: 0;
+    padding: 2% 0 0 0;
+    background-color: transparent;
+
+    font-size: 0.5rem;
+    text-align: center;
+    align-content: center;
+}
+
+.edit-exercise-btn:hover {
+    color: black;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.exercise-title {
+    font-size: 1.4rem;
+}
+
+.complete-exercise-btn {
+    grid-row: 1/-1;
+    grid-column: 2;
+    max-width: 100px;
+    height: 70%;
+}
+
+.completed {
+    color: lightgray;
+}
+
+#exercise-adder-form {
+    display: none;
+    position: absolute;
+    top: clamp(10px, 5%, 15px);
+    bottom: 5px;
+    margin: auto;
+
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#exercise-adder-form h2 {
+    align-self: center;
+    margin-top: 10px;
+}
+
+#close-form {
+    position: absolute;
+    top: 0%;
+    right: 0;
+}
+
+#not-logged-in[open] {
+    background-color: #505081;
+    color: white;
+    border: 5px solid black;
+    width: 60vw;
+    max-width: 400px;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#not-logged-in p {
+    font-weight: bold;
+}
+
+#not-logged-in button {
+    width: 40%;
+}

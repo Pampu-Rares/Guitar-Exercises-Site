@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./homepage_styles.css">
+    <title>Exercise Guitar</title>
+</head>
+<body>
+
+    <main>
+        <h1>Guitar Exercises</h1>
+        <button id="logout" type="button">Log out</button>
+        <p id="err-paragraph"></p>
+        <div id="filter">
+            <button id="incomplete" class="selected">Current</button>
+            <button id="complete">Completed</button>
+            <button id="all">All</button>
+        </div>
+
+        <section id="guitar-exercises">
+            
+        </section>
+        <button id="add-exercise" type="button">Add another exercise</button>
+        <form id="exercise-adder-form">
+            <button id="close-form" type="button">X</button>
+            <h2>Add exercise</h2>
+            <label for="title">Enter the exercise's title</label>
+            <input id="title" placeholder="E.g: C chord practice">
+            <label for="select-exercise">Choose the desired exercise type</label>
+            <select id="select-exercise">
+                <option value="chord_perfect" default>Chord Perfect</option>
+                <option value="chord_changes">Chord Changes</option>
+                <option value="riff_practice">Riff Practice</option>
+                <option value="rithm_practice">Rithm Practice</option>
+                <option value="song_practice">Song Practice</option>
+            </select>
+            <label for="select-duration">Select the duration of the exercise:</label>
+            <select id="select-duration">
+                <option value="1" default>1 minute</option>
+                <option value="2">2 minutes</option>
+                <option value="5">5 minutes</option>
+                <option value="10">10 minutes</option>
+            </select>
+            <button id="add-exercise-confirmation" type="button">Add</button>
+            <button id="update-exercise-confirmation" type="button">Update</button>
+
+        </form>
+        <dialog id="not-logged-in">
+            <p>You are not logged in</p>
+            <button id="log-in" type="button">Log in</button>
+        </dialog>
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

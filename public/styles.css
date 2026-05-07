@@ -1,0 +1,93 @@
+:root {
+    box-sizing: border-box;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 25px;
+    color: white;
+}
+
+html {
+    background-color: #0F0E47;
+    height: 100vh;
+}
+
+main {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #0F0E47;
+    border: black 2px solid;
+    border-radius: 20px;
+}
+
+h1, h2 {
+    text-align: center;
+    margin: 20px 0;
+}
+
+/* in auth.html */
+form {
+    height: 60vh;
+    width: 80vw;
+    padding: 5%;
+    background-color: #505081;
+    border-radius: 30px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+}
+
+form input, select {
+    width: 50%;
+    height: 10%;
+    border: 2px solid #272757;
+    border-radius: 10px;
+    background-color: #8686AC;
+    
+    font-size: 0.8rem;
+    text-indent: 5px;
+}
+
+form input, form input::placeholder, form select {
+    color: white;
+}
+
+button {
+    font-size: 1rem;
+    padding: 2%;
+    border-radius: 20px;
+    color: white;
+    background-color: #8686AC;
+    border: 2px solid #0F0E47;
+    cursor: pointer;
+}
+
+button:hover {
+    color: black;
+    background-color: white;
+}
+
+/* #region: change-form-p */
+
+#change-form {
+    color: purple;
+    cursor: pointer;
+}
+
+#change-form:hover {
+    color: blue;
+}
+
+#change-form:active {
+    color: white;
+}
+
+/* #endregion */
+
+#register-form {
+    display: none;
+}
