@@ -1,3 +1,5 @@
+const main = document.querySelector("main");
+
 const addExerciseBtn = document.getElementById("add-exercise");
 const exerciseInputForm = document.getElementById("exercise-adder-form");
 const closeForm = document.getElementById("close-form");
@@ -77,6 +79,8 @@ addExerciseBtn.addEventListener("click", () => {
     exerciseSelector.value = "chord_perfect";
     durationSelector.value = "1";
 
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
     exerciseInputForm.style.display = "flex";
     addExerciseConfirmation.style.display = "block";
     updateExerciseConfirmation.style.display = "none";
@@ -126,7 +130,10 @@ async function getExercises() {
     else exercises.forEach(exercise => {
             exercisesContainer.innerHTML += `
             <div id="${exercise.id}" class="exercise ${exercise.completed === 1 ? "completed" : ""}">
-                <button class="edit-exercise-btn" onclick="editExercise('${exercise.id}', '${exercise.title}', '${exercise.type}', '${exercise.duration}')">Edit</button>
+                <div class="options">
+                    <button class="delete-exercise-btn" onclick=""><img src="./Icons/trash.png"></button>
+                    <button class="edit-exercise-btn" onclick="editExercise('${exercise.id}', '${exercise.title}', '${exercise.type}', '${exercise.duration}')"><img src="./Icons/options.svg"></button>
+                </div>
                 <p class="exercise-title">${exercise.title}</p>
                 <p class="exercise-type">Type: ${exerciseNames[exercise.type]}</p>
                 <p class="exercise-duration">Duration: ${exercise.duration} min</p>

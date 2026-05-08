@@ -67,11 +67,23 @@ main {
     margin: 0;
 }
 
-.edit-exercise-btn {
+.options {
     position: absolute;
-    top: 0;
-    right: -5%;
+    top: 2%;
+    right: 5%;
 
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(8px 1vw 20px);
+}
+
+
+.delete-exercise-btn img, .edit-exercise-btn img {
+    width: clamp(20px, 1vw, 40px);
+    height: clamp(20px, 1vw, 40px);
+}
+
+.edit-exercise-btn, .delete-exercise-btn {
     width: 20%;
     border: 0;
     padding: 2% 0 0 0;

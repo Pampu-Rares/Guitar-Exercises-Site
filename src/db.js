@@ -1,13 +1,13 @@
 import {DatabaseSync} from 'node:sqlite';
-const db = new DatabaseSync(":memory:");
+const db = new DatabaseSync("./database.sqlite");
 
-db.exec(`CREATE TABLE users (
+db.exec(`CREATE TABLE IF NOT EXISTS users (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         username TEXT UNIQUE,
         password TEXT
     )`);
 
-db.exec(`CREATE TABLE guitar_exercises (
+db.exec(`CREATE TABLE IF NOT EXISTS guitar_exercises (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         user_id INTEGER,
         title TEXT,
