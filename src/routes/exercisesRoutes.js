@@ -56,4 +56,17 @@ router.post('/edit/:id', (req, res) => {
     }
 });
 
+router.delete('/delete_exercise/:id', (req, res) => {
+    try {
+        const exerciseId = req.params.id;
+        const deleteExercise = db.prepare(`
+            DELETE FROM guitar_exercises WHERE id = ? AND user_id = ?
+            `);
+        deleteExercise.run(exerciseId, req.userId);
+        res.status(200).json({message: "Exercise deleted successfully."});
+    } catch(err) {
+        res.status(500).json({message: "Could not delete exercsise."})
+    }
+});
+
 export default router;

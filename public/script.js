@@ -1,4 +1,4 @@
-const main = document.querySelector("main");
+const body = document.querySelector("body");
 
 const addExerciseBtn = document.getElementById("add-exercise");
 const exerciseInputForm = document.getElementById("exercise-adder-form");
@@ -37,7 +37,7 @@ completedExercisesFilter.addEventListener("click", () => {
     selectedFilterBtn.classList.remove("selected");
     completedExercisesFilter.classList.add("selected");
     selectedFilterBtn = completedExercisesFilter;
-    const allExercises = document.querySelectorAll("#guitar-exercises div");
+    const allExercises = document.querySelectorAll("#guitar-exercises > div");
     allExercises.forEach(exercise => {
         if(exercise.classList.contains("completed")) exercise.style.display = "grid";
         else exercise.style.display = "none";
@@ -49,7 +49,7 @@ incompletedExercisesFilter.addEventListener("click", () => {
     selectedFilterBtn.classList.remove("selected");
     incompletedExercisesFilter.classList.add("selected");
     selectedFilterBtn = incompletedExercisesFilter;
-    const allExercises = document.querySelectorAll("#guitar-exercises div");
+    const allExercises = document.querySelectorAll("#guitar-exercises > div");
     allExercises.forEach(exercise => {
         if(exercise.classList.contains("completed")) exercise.style.display = "none";
         else exercise.style.display = "grid";
@@ -61,7 +61,7 @@ allExercisesFilter.addEventListener("click", () => {
     selectedFilterBtn.classList.remove("selected");
     allExercisesFilter.classList.add("selected");
     selectedFilterBtn = allExercisesFilter;
-    const allExercises = document.querySelectorAll("#guitar-exercises div");
+    const allExercises = document.querySelectorAll("#guitar-exercises > div");
     allExercises.forEach(exercise => {
         exercise.style.display = "grid";
     });
@@ -80,6 +80,9 @@ addExerciseBtn.addEventListener("click", () => {
     durationSelector.value = "1";
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    setTimeout(() => {
+        body.style.overflowY = "hidden";
+    }, 500);
 
     exerciseInputForm.style.display = "flex";
     addExerciseConfirmation.style.display = "block";
@@ -106,6 +109,21 @@ async function completeExercise(id, completeValue) {
     
 }
 
+async function deleteExercise(id) {
+    try {
+        await fetch('/exercises/delete_exercise/' + id, {
+            method: "DELETE",
+            headers: {
+                "Authorization": token
+            }
+        });
+        getExercises();
+    } catch(err) {
+        errParagraph.innerText = `Error: ${err.message}`;
+    }
+    
+}
+
 async function editExercise(id, title, type, duration) {
     titleInput.value = title;
     exerciseSelector.value = type;
@@ -116,6 +134,11 @@ async function editExercise(id, title, type, duration) {
     updateExerciseConfirmation.style.display = "block";
     // need to send the id somehow
     editExerciseId = id;
+
+    window.scrollTo({top: 0, behavior: "smooth"});
+    setTimeout(() => {
+        body.style.overflowY = "hidden";
+    }, 500);
 }
 
 async function getExercises() {
@@ -131,7 +154,7 @@ async function getExercises() {
             exercisesContainer.innerHTML += `
             <div id="${exercise.id}" class="exercise ${exercise.completed === 1 ? "completed" : ""}">
                 <div class="options">
-                    <button class="delete-exercise-btn" onclick=""><img src="./Icons/trash.png"></button>
+                    <button class="delete-exercise-btn" onclick="deleteExercise(${exercise.id})"><img src="./Icons/trash.png"></button>
                     <button class="edit-exercise-btn" onclick="editExercise('${exercise.id}', '${exercise.title}', '${exercise.type}', '${exercise.duration}')"><img src="./Icons/options.svg"></button>
                 </div>
                 <p class="exercise-title">${exercise.title}</p>
@@ -143,21 +166,21 @@ async function getExercises() {
     });
     if(selectedFilterBtn === incompletedExercisesFilter)
     {
-        const allExercises = document.querySelectorAll("#guitar-exercises div");
+        const allExercises = document.querySelectorAll("#guitar-exercises > div");
         allExercises.forEach(exercise => {
             if(exercise.classList.contains("completed")) exercise.style.display = "none";
             else exercise.style.display = "grid";
         });
     }
     else if(selectedFilterBtn === completedExercisesFilter) {
-        const allExercises = document.querySelectorAll("#guitar-exercises div");
+        const allExercises = document.querySelectorAll("#guitar-exercises > div");
         allExercises.forEach(exercise => {
             if(exercise.classList.contains("completed")) exercise.style.display = "grid";
             else exercise.style.display = "none";
         });
     }
     else {
-        const allExercises = document.querySelectorAll("#guitar-exercises div");
+        const allExercises = document.querySelectorAll("#guitar-exercises > div");
         allExercises.forEach(exercise => {
             exercise.style.display = "grid";
         });
@@ -167,6 +190,7 @@ async function getExercises() {
 addExerciseConfirmation.addEventListener("click", async () => {
     try {
         exerciseInputForm.style.display = "none";
+        body.style.overflowY = "scroll";
         const sendExercise = await fetch("/exercises/create_exercise/", {
             method: "POST",
             headers: {
@@ -191,6 +215,7 @@ updateExerciseConfirmation.addEventListener("click", async () => {
     // editExerciseId is the variable
     try {
         exerciseInputForm.style.display = "none";
+        body.style.overflowY = "scroll";
         const editExercise = await fetch('/exercises/edit/' + editExerciseId, {
             method: "POST",
             headers: {
@@ -213,6 +238,7 @@ updateExerciseConfirmation.addEventListener("click", async () => {
 });
 
 closeForm.addEventListener("click", () => {
+    body.style.overflowY = "scroll";
     exerciseInputForm.style.display = "none";
 });
 
