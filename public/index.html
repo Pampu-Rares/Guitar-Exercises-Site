@@ -11,7 +11,26 @@
 
     <main>
         <h1>Guitar Exercises Tracker</h1>
+        <button id="open-timer" type="button">Timer</button>
         <button id="logout" type="button">Log out</button>
+        <div id="timer">
+            <button id="close-timer">X</button>
+            <h2>Timer</h2>
+            <select id="select-minutes">
+                <option value="1" default>1 minute</option>
+                <option value="2">2 minutes</option>
+                <option value="5">5 minutes</option>
+                <option value="10">10 minutes</option>
+            </select>
+            <button id="start-timer">Start Timer</button>
+            <div id="clock">
+                <svg width="52vw" height="52vw">
+                    <circle id="progress-bar", cx="26vw", cy="26vw", r="24vw", fill="none", stroke="#8686AC", stroke-width="3vw"
+                    >
+                </svg>
+                <p id="clock-text">0:00</p>
+            </div>
+        </div>
         <div id="filter">
             <button id="incomplete" class="selected">Current</button>
             <button id="complete">Completed</button>
@@ -53,7 +72,7 @@
         </dialog>
     </main>
 
-    <script src="script.js"></script>
+    <script src="script.js" type="module"></script>
 
 </body>
 </html>

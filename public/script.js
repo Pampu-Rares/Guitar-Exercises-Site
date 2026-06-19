@@ -1,4 +1,9 @@
+import runTimer from './timer_script.js';
+
 const body = document.querySelector("body");
+const openTimerBtn = document.getElementById("open-timer");
+const selectMinutes = document.getElementById("select-minutes");
+const startTimer = document.getElementById("start-timer");
 
 const addExerciseBtn = document.getElementById("add-exercise");
 const exerciseInputForm = document.getElementById("exercise-adder-form");
@@ -31,6 +36,14 @@ const exerciseNames = {
     "rithm_practice": "Rithm Practice",
     "song_practice": "Song Practice"
 };
+
+openTimerBtn.addEventListener("click", () => {
+    timer.style.display = 'flex';
+});
+
+startTimer.addEventListener("click", () => {
+    runTimer(selectMinutes.value);
+});
 
 completedExercisesFilter.addEventListener("click", () => {
     if(selectedFilterBtn === completedExercisesFilter) return ;

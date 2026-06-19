@@ -7,11 +7,54 @@ main {
     border: none;
 }
 
+#open-timer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 1%;
+    border-radius: 0 0 20px 0;
+}
+
 #logout {
     position: absolute;
     top: 0;
     right: 0;
     padding: 1%;
+}
+
+#timer { /* might need to modify this */
+    display: none;
+    position: absolute;
+    z-index: 3;
+    top: 20px;
+    right: 20px;
+    left: 20px;
+
+    flex-direction: column;
+    align-items: center;
+
+    background-color: #505081;
+    border-radius: 20px;
+}
+
+#clock {
+    position: relative;
+}
+
+svg {
+    transform: rotate(-90deg);
+}
+
+#progress-bar {
+    transition: stroke-dashoffset 1s linear;
+}
+
+#clock-text {
+    font-size: 1.2rem;
+    position: absolute;
+    top: 19vw;
+    left: 26vw;
+    transform: translate(-50%);
 }
 
 #filter {
@@ -137,7 +180,7 @@ main {
     margin-top: 10px;
 }
 
-#close-form {
+#close-form, #close-timer {
     position: absolute;
     top: 0%;
     right: 0;
