@@ -28,5 +28,5 @@ app.use('/auth', authRoutes);
 app.use('/exercises', authMiddleware, exercisesRoutes);
 
 app.listen(PORT, () => {
-    console.log('Server is live')
+    console.log('Server is live at '+ PORT);
 });

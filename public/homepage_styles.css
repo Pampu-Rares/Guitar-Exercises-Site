@@ -26,35 +26,53 @@ main {
     display: none;
     position: absolute;
     z-index: 3;
-    top: 20px;
+    top: 0;
+    bottom: 0;
     right: 20px;
     left: 20px;
+    margin: auto;
+    height: fit-content;
 
     flex-direction: column;
     align-items: center;
+    gap: 20px;
 
     background-color: #505081;
     border-radius: 20px;
+    padding: 40px 20px;
 }
 
-#clock {
-    position: relative;
+#timer-options {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 20px;
+    width: clamp(20px, 80%, 300px);
+}
+
+#select-minutes {
+    flex-grow: 1;
+    height: auto;
+    border-radius: 20px;
 }
 
 svg {
-    transform: rotate(-90deg);
+    position: relative;
+    width: clamp(40px, 60%, 450px);
 }
 
 #progress-bar {
     transition: stroke-dashoffset 1s linear;
+    transform: rotate(-90deg);
+    transform-origin: 50px 50px;
 }
 
 #clock-text {
     font-size: 1.2rem;
-    position: absolute;
-    top: 19vw;
-    left: 26vw;
-    transform: translate(-50%);
+    text-anchor: middle;
+    dominant-baseline: central;
+    font-size: 25px;
+    fill: white;
 }
 
 #filter {
@@ -184,6 +202,10 @@ svg {
     position: absolute;
     top: 0%;
     right: 0;
+}
+
+#close-timer {
+    padding: clamp(10px, 5%, 25px);
 }
 
 #not-logged-in[open] {

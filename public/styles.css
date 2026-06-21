@@ -51,7 +51,7 @@ form input, select {
     text-indent: 5px;
 }
 
-form input, form input::placeholder, form select {
+form input, form input::placeholder, select {
     color: white;
 }
 

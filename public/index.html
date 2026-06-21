@@ -16,20 +16,21 @@
         <div id="timer">
             <button id="close-timer">X</button>
             <h2>Timer</h2>
-            <select id="select-minutes">
-                <option value="1" default>1 minute</option>
-                <option value="2">2 minutes</option>
-                <option value="5">5 minutes</option>
-                <option value="10">10 minutes</option>
-            </select>
-            <button id="start-timer">Start Timer</button>
-            <div id="clock">
-                <svg width="52vw" height="52vw">
-                    <circle id="progress-bar", cx="26vw", cy="26vw", r="24vw", fill="none", stroke="#8686AC", stroke-width="3vw"
-                    >
-                </svg>
-                <p id="clock-text">0:00</p>
+            <div id="timer-options">
+                <select id="select-minutes">
+                    <option value="1" default>1 minute</option>
+                    <option value="0.5">30 seconds</option>
+                    <option value="0.1">6 seconds</option>
+                    <option value="2">2 minutes</option>
+                    <option value="5">5 minutes</option>
+                    <option value="10">10 minutes</option>
+                </select>
+                <button id="start-timer">Start</button>
             </div>
+            <svg viewbox="0 0 100 100" id="clock">
+                <circle id="progress-bar", cx="50", cy="50", r="47", fill="none", stroke="#8686AC", stroke-width="5" />
+                <text id="clock-text" x="50" y="50">0:00</text>
+            </svg>
         </div>
         <div id="filter">
             <button id="incomplete" class="selected">Current</button>
@@ -72,7 +73,7 @@
         </dialog>
     </main>
 
-    <script src="script.js" type="module"></script>
-
+    <script src="script.js"></script>
+    <script src="./timer_script.js"></script>
 </body>
 </html>
