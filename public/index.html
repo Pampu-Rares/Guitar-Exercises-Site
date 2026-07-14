@@ -9,9 +9,36 @@
 </head>
 <body>
 
+    <div id="timer">
+        <button id="close-timer">X</button>
+        <h2>Timer</h2>
+        <div id="timer-options">
+            <select id="select-minutes">
+                <option value="1" default>1 minute</option>
+                <option value="0.5">30 seconds</option>
+                <option value="0.1">6 seconds</option>
+                <option value="2">2 minutes</option>
+                <option value="5">5 minutes</option>
+                <option value="10">10 minutes</option>
+            </select>
+            <button id="start-timer">Play</button>
+        </div>
+        <svg viewbox="0 0 100 100" id="clock">
+            <circle id="progress-bar", cx="50", cy="50", r="47", fill="none", stroke="#8686AC", stroke-width="5" />
+            <text id="clock-text" x="50" y="50">0:00</text>
+        </svg>
+        <div id="volume-changer-container">
+            <input type="range" value="100" id="volume-changer">
+            <div id="volume-icon-container">
+                <img alt="volume-icon" src="./Icons/volumeIcon.png">
+            </div>
+        </div>
+    </div>
     <main>
         <h1>Guitar Exercises Tracker</h1>
+        <button id="open-timer" type="button">Timer</button>
         <button id="logout" type="button">Log out</button>
+        
         <div id="filter">
             <button id="incomplete" class="selected">Current</button>
             <button id="complete">Completed</button>
@@ -26,9 +53,9 @@
         <form id="exercise-adder-form">
             <button id="close-form" type="button">X</button>
             <h2>Add exercise</h2>
-            <label for="title">Enter the exercise's title</label>
+            <label for="title">Enter the exercise's title:</label>
             <input id="title" placeholder="E.g: C chord practice" maxlength="20">
-            <label for="select-exercise">Choose the desired exercise type</label>
+            <label for="select-exercise">Choose the desired exercise type:</label>
             <select id="select-exercise">
                 <option value="chord_perfect" default>Chord Perfect</option>
                 <option value="chord_changes">Chord Changes</option>
@@ -54,6 +81,6 @@
     </main>
 
     <script src="script.js"></script>
-
+    <script src="./timer_script.js"></script>
 </body>
 </html>

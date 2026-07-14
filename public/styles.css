@@ -40,8 +40,13 @@ form {
     justify-content: space-around;
 }
 
+select {
+    appearance: none;
+    cursor: pointer;
+}
+
 form input, select {
-    width: 50%;
+    width: clamp(40px, 80%, 400px);
     height: 10%;
     border: 2px solid #272757;
     border-radius: 10px;
@@ -51,13 +56,13 @@ form input, select {
     text-indent: 5px;
 }
 
-form input, form input::placeholder, form select {
+form input, form input::placeholder, select {
     color: white;
 }
 
 button {
     font-size: 1rem;
-    padding: 2%;
+    padding: clamp(2px, 2%, 20px);
     border-radius: 20px;
     color: white;
     background-color: #8686AC;
