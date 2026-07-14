@@ -40,8 +40,13 @@ form {
     justify-content: space-around;
 }
 
+select {
+    appearance: none;
+    cursor: pointer;
+}
+
 form input, select {
-    max-width: 80%;
+    width: clamp(40px, 80%, 400px);
     height: 10%;
     border: 2px solid #272757;
     border-radius: 10px;

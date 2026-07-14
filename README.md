@@ -1,8 +1,9 @@
 # Guitar-Exercises-Site
-A website which lets you keep track of your guitar exercises routine.
+A full-stack web application which lets you keep track of your guitar exercises routine.
 - for those interested of keeping on track with their guitar learning.
+- This project uses both json web token and bcryptjs so as to securely access log into your account and access your tasks.
 
-![A depiction of how the main page looks](./readme_thumbnails/main_page.png)
+![A depiction of how the main page looks](./readme_thumbnails/guitarExercisesMainPrev.png)
 
 ## Getting Started
 
@@ -19,7 +20,7 @@ This project requires Node.js (which includes npm) installed on your system.
 git  clone  https://github.com/Pampu-Rares/Guitar-Exercises-Site.git
 ```
 
-2. Change the default values of the `.env` file if you so wish:
+2. Change the default values of the `.env` file if you wish so:
 
 ```env
 PORT=5050 # you can leave the port number as is
@@ -38,22 +39,17 @@ npm run dev
 
 ### Login page
 
-After opening the webpage for the first time, you will create (or sign into) an account
+After opening the webpage for the first time, you create (or sign into) your account
 ![Login page](./readme_thumbnails/login.png)
 
 ### Homepage
 
-Next, you can start adding exercises to practice your guitar skills.
-There is also a timer in the top left corner with which to keep track of your time.
+You will afterwards be forwarded to the homepage. Here, you can start adding, editing and completing exercises to practice your guitar skills. After finishing with a particular set of exercises, you can delete them and add new ones.
+![The homepage](./readme_thumbnails/addExercisePrev.png)
 
-### Additional Features
+This web application is intended as a way for you to have your practice exercises in one place and complete them in a gamified manner
 
-This project uses both json web token and bcryptjs so as to securely access log into your account and access your tasks.
-
-## Known Issues
-
-- Timer:
-After pausing the timer, it does not resume from where it was paused. Instead, it restarts from the beginning.
+- ⌚There is also a timer in the top left corner with which to keep track of your time.
 
 ## License
 

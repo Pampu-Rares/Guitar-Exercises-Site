@@ -238,8 +238,7 @@ svg {
 #exercise-adder-form {
     display: none;
     position: absolute;
-    top: clamp(10px, 5%, 15px);
-    bottom: 5px;
+    top: clamp(10px, 10%, 80px);
     margin: auto;
 
     flex-direction: column;
