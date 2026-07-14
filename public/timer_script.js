@@ -6,14 +6,26 @@ const startTimer = document.getElementById("start-timer");
 const timer = document.getElementById("timer");
 const progressBar = document.getElementById("progress-bar");
 const clockText = document.getElementById("clock-text");
+const volumeSelector = document.getElementById("volume-changer")
+
+const main = document.querySelector("main")
 
 const r = progressBar.r.baseVal.value;
 const circumference = 2 * Math.PI * r;
 progressBar.style.strokeDasharray = circumference;
-let interval;
+let interval, totalValue, value;
+const timerEndSound = new Audio("./AudioFiles/timerEnd.wav")
+timerEndSound.volume = localStorage.getItem("timerVolume") || 1;
+if(timerEndSound.volume != 1) volumeSelector.value = timerEndSound.volume * 100
+
+function toggleMainBlur() {
+    main.classList.toggle("blurred")
+    main.style.userSelect = main.style.userSelect == 'none' ? 'auto' : 'none'
+}
 
 openTimerBtn.addEventListener("click", () => {
     timer.style.display = 'flex';
+    toggleMainBlur()
     window.scrollTo({ top: 0, behavior: 'smooth' });
     setTimeout(() => {
         body.style.overflowY = "hidden";
@@ -21,21 +33,18 @@ openTimerBtn.addEventListener("click", () => {
 });
 
 closeTimerBtn.addEventListener("click", () => {
+    toggleMainBlur()
     timer.style.display = 'none';
     body.style.overflowY = 'scroll';
 });
 
-function runTimer(value) {
-    clearInterval(interval);
-    const totalValue = value;
-    let percent = 100;
-    clockText.style.fill = 'white';
-
+function runTimer() {
+    value--
     percent = (value / totalValue) * 100;
     progressBar.style.strokeDashoffset = circumference * (1 - percent/100);
     clockText.textContent = `${parseInt(value/60)}:${value%60 < 10 ? '0' + value%60 : value%60}`;
-    value--;
     interval = setInterval(() => {
+        value--
         percent = (value / totalValue) * 100;
         progressBar.style.strokeDashoffset = circumference * (1 - percent/100);
         clockText.textContent = `${parseInt(value/60)}:${value%60 < 10 ? '0' + value%60 : value%60}`;
@@ -43,19 +52,41 @@ function runTimer(value) {
             clockText.style.fill = '#C7EBBC';
             clearInterval(interval);    
             setTimeout(() => {
-                startTimer.innerText = 'Start';
+                timerEndSound.play()
+                resetTimer()
             }, 1000);
         }
-        value--;
     }, 1000);
 }
 
+function resetTimer() {
+    startTimer.innerText = 'Play'
+    value = selectMinutes.value * 60
+    progressBar.style.strokeDashoffset = 0;
+    clockText.textContent = `${parseInt(value/60)}:${value%60 < 10 ? '0' + value%60 : value%60}`;
+    totalValue = value
+    let percent = 100
+    clockText.style.fill = 'white'
+    clearInterval(interval)
+}
+
 startTimer.addEventListener("click", () => {
-    if(startTimer.innerText === 'Start') {
-        runTimer(selectMinutes.value * 60);
-        startTimer.innerText = 'Pause';
+    if(startTimer.innerText === 'Play' || startTimer.innerText === 'Resume') {
+        if(startTimer.innerText === 'Play')
+            resetTimer()
+        startTimer.innerText = 'Pause'
+        runTimer()
     } else {
-        startTimer.innerText = 'Start'; // 'Play'
+        startTimer.innerText = 'Resume'
         clearInterval(interval); 
     } 
 });
+
+selectMinutes.addEventListener("change", () => {
+    resetTimer()
+})
+
+volumeSelector.addEventListener("change", () => {
+    localStorage.setItem("timerVolume", volumeSelector.value / 100)
+    timerEndSound.volume = volumeSelector.value / 100
+})

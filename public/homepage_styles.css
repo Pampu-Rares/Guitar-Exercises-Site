@@ -2,17 +2,25 @@ html {
     scrollbar-gutter: stable;
 }
 
+body {
+    margin: 0;
+}
+
 main {
+    position: relative;
     padding: 5%;
     border: none;
+    transition: filter 0.3s ease;
+}
+
+.blurred {
+    filter: blur(5px);
 }
 
 #open-timer {
     position: absolute;
     top: 0;
     left: 0;
-    padding: 1%;
-    border-radius: 0 0 20px 0;
 }
 
 #logout {
@@ -22,16 +30,16 @@ main {
     padding: 1%;
 }
 
+/* #region: timer */
 #timer { /* might need to modify this */
     display: none;
     position: absolute;
     z-index: 3;
-    top: 0;
-    bottom: 0;
-    right: 20px;
-    left: 20px;
+    inset: 0;
     margin: auto;
     height: fit-content;
+    width: clamp(280px, 60%, 700px);
+    overflow: hidden;
 
     flex-direction: column;
     align-items: center;
@@ -40,6 +48,7 @@ main {
     background-color: #505081;
     border-radius: 20px;
     padding: 40px 20px;
+    border: 5px solid black;
 }
 
 #timer-options {
@@ -51,6 +60,9 @@ main {
 }
 
 #select-minutes {
+    appearance: none;
+    cursor: pointer;
+    text-align: center;
     flex-grow: 1;
     height: auto;
     border-radius: 20px;
@@ -74,6 +86,48 @@ svg {
     font-size: 25px;
     fill: white;
 }
+
+#volume-changer-container {
+    position: absolute;
+    right: 20px;
+    bottom: 5px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: height 0.3s ease;
+}
+
+#volume-changer-container:hover #volume-changer {
+    height: 100px;
+    opacity: 1;
+}
+
+#volume-changer {
+    writing-mode: vertical-lr;
+    direction: rtl;
+    height: 0;
+    opacity: 0;
+    cursor: pointer;
+    overflow: hidden;
+
+    transition: height 0.3s ease, opacity 0.3s ease;
+}
+
+#volume-icon-container {
+    width: clamp(5px, 5vw, 30px);
+}
+
+#volume-icon-container img {
+    object-fit: contain;
+    width: 100%;
+}
+
+/* #endregion */
 
 #filter {
     width: clamp(40px, 80vw, 400px);
@@ -200,12 +254,13 @@ svg {
 
 #close-form, #close-timer {
     position: absolute;
-    top: 0%;
+    top: 0;
     right: 0;
 }
 
 #close-timer {
-    padding: clamp(10px, 5%, 25px);
+    border-radius: 0 0 0 20px;
+    border: none;
 }
 
 #not-logged-in[open] {

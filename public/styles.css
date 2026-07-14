@@ -41,7 +41,7 @@ form {
 }
 
 form input, select {
-    width: 50%;
+    max-width: 80%;
     height: 10%;
     border: 2px solid #272757;
     border-radius: 10px;
@@ -57,7 +57,7 @@ form input, form input::placeholder, select {
 
 button {
     font-size: 1rem;
-    padding: 2%;
+    padding: clamp(2px, 2%, 20px);
     border-radius: 20px;
     color: white;
     background-color: #8686AC;
