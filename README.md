@@ -1,7 +1,7 @@
 # Guitar-Exercises-Site
 A full-stack web application which lets you keep track of your guitar exercises routine.
 - for those interested of keeping on track with their guitar learning.
-- This project uses both json web token and bcryptjs so as to securely access log into your account and access your tasks.
+- This project uses both json web token and bcryptjs so as to securely log into your account and access your tasks.
 
 ![A depiction of how the main page looks](./readme_thumbnails/guitarExercisesMainPrev.png)
 
