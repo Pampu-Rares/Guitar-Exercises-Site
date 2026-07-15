@@ -20,7 +20,7 @@ const completedExercisesFilter = document.getElementById("complete");
 const incompletedExercisesFilter = document.getElementById("incomplete");
 const allExercisesFilter = document.getElementById("all");
 
-let token = localStorage.getItem("token");
+let exercises = JSON.parse(localStorage.getItem("exercises")) || [];;
 let editExerciseId;
 let userId = 1;
 let selectedFilterBtn = incompletedExercisesFilter;
@@ -67,13 +67,6 @@ allExercisesFilter.addEventListener("click", () => {
     });
 });
 
-
-logoutBtn.addEventListener("click", () => {
-    token = "";
-    localStorage.removeItem("token");
-    window.location.href = '/auth';
-});
-
 addExerciseBtn.addEventListener("click", () => {
     titleInput.value = "";
     exerciseSelector.value = "chord_perfect";
@@ -92,16 +85,8 @@ addExerciseBtn.addEventListener("click", () => {
 
 async function completeExercise(id, completeValue) {
     try {
-        let completeEx = await fetch('/exercises/update_exercise/' + id, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": token
-            },
-            body: JSON.stringify({
-                "completed": completeValue
-            })
-        });
+        exercises[id].completed = completeValue
+        localStorage.setItem("exercises", JSON.stringify(exercises))
         getExercises();
     } catch(err) {
         errParagraph.innerText = `Error: ${err.message}`;
@@ -111,12 +96,8 @@ async function completeExercise(id, completeValue) {
 
 async function deleteExercise(id) {
     try {
-        await fetch('/exercises/delete_exercise/' + id, {
-            method: "DELETE",
-            headers: {
-                "Authorization": token
-            }
-        });
+        exercises.splice(id, 1)
+        localStorage.setItem("exercises", JSON.stringify(exercises))
         getExercises();
     } catch(err) {
         errParagraph.innerText = `Error: ${err.message}`;
@@ -143,24 +124,19 @@ async function editExercise(id, title, type, duration) {
 
 async function getExercises() {
     exercisesContainer.innerHTML = "";
-    let exercises = [];
-    await fetch("/exercises/", {
-        headers: {
-            "Authorization": token
-        }
-    }).then(res => res.json()).then(data => exercises = data.exercises).catch(err => errParagraph.innerText = `Error: ${err.message}`);
+    //exercises = JSON.parse(localStorage.getItem("exercises")) || [];
     if(!exercises.length) errParagraph.innerText = "Add an exercise to your routine.";
-    else exercises.forEach(exercise => {
+    else exercises.forEach((exercise, index) => {
             exercisesContainer.innerHTML += `
-            <div id="${exercise.id}" class="exercise ${exercise.completed === 1 ? "completed" : ""}">
+            <div id="${index}" class="exercise ${exercise.completed === 1 ? "completed" : ""}">
                 <div class="options">
-                    <button class="delete-exercise-btn" onclick="deleteExercise(${exercise.id})"><img src="./Icons/trash.png"></button>
-                    <button class="edit-exercise-btn" onclick="editExercise('${exercise.id}', '${exercise.title}', '${exercise.type}', '${exercise.duration}')"><img src="./Icons/options.svg"></button>
+                    <button class="delete-exercise-btn" onclick="deleteExercise(${index})"><img src="./Icons/trash.png"></button>
+                    <button class="edit-exercise-btn" onclick="editExercise('${index}', '${exercise.title}', '${exercise.type}', '${exercise.duration}')"><img src="./Icons/options.svg"></button>
                 </div>
                 <p class="exercise-title">${exercise.title}</p>
                 <p class="exercise-type">Type: ${exerciseNames[exercise.type]}</p>
                 <p class="exercise-duration">Duration: ${exercise.duration} min</p>
-                <button class="complete-exercise-btn" onclick="completeExercise(${exercise.id}, ${exercise.completed === 1 ? "0" : "1"})">${exercise.completed === 1 ?"🔁" : "☑️"}</button>
+                <button class="complete-exercise-btn" onclick="completeExercise(${index}, ${exercise.completed === 1 ? "0" : "1"})">${exercise.completed === 1 ?"🔁" : "☑️"}</button>
             </div>
             `;
     });
@@ -191,19 +167,13 @@ addExerciseConfirmation.addEventListener("click", async () => {
     try {
         exerciseInputForm.style.display = "none";
         body.style.overflowY = "scroll";
-        const sendExercise = await fetch("/exercises/create_exercise/", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": token
-            },
-            body: JSON.stringify({
+        exercises.push({
                 title: titleInput.value,
                 type: exerciseSelector.value,
-                duration: durationSelector.value
+                duration: durationSelector.value,
+                completed: false
             })
-        });
-        const status = await sendExercise.json();
+        localStorage.setItem("exercises", JSON.stringify(exercises))
         getExercises();
         errParagraph.innerText = "";
     }   catch(err) {
@@ -216,21 +186,11 @@ updateExerciseConfirmation.addEventListener("click", async () => {
     try {
         exerciseInputForm.style.display = "none";
         body.style.overflowY = "scroll";
-        const editExercise = await fetch('/exercises/edit/' + editExerciseId, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": token
-            },
-            body: JSON.stringify({
-                title: titleInput.value,
-                type: exerciseSelector.value,
-                duration: durationSelector.value
-            })
-        });
-        const response = editExercise.json();
+        exercises[editExerciseId].title = titleInput.value
+        exercises[editExerciseId].type = exerciseSelector.value
+        exercises[editExerciseId].duration = durationSelector.value
+        localStorage.setItem("exercises", JSON.stringify(exercises))
         getExercises();
-        console.log(response);
         errParagraph.innerText = "";
     }   catch(err) {
         errParagraph.innerText = `Error: ${err.message}`;
@@ -242,6 +202,8 @@ closeForm.addEventListener("click", () => {
     exerciseInputForm.style.display = "none";
 });
 
+getExercises()
+/*
 if(!token) {
     addExerciseBtn.style.display = "none";
     notLoggedInModal.showModal();
@@ -252,3 +214,4 @@ if(!token) {
     notLoggedInModal.close();
     getExercises();
 }
+*/

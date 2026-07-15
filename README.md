@@ -1,16 +1,11 @@
 # Guitar-Exercises-Site
-A full-stack web application which lets you keep track of your guitar exercises routine.
+This is a simplified, frontend-only version of the full-stack application. It is designed to let you quickly explore the user interface and core features without needing to create an account or set up a local database.
 - for those interested of keeping on track with their guitar learning.
-- This project uses both json web token and bcryptjs so as to securely log into your account and access your tasks.
+- For the full experience, feel free to try out the full project on the main branch.
 
 ![A depiction of how the main page looks](./readme_thumbnails/guitarExercisesMainPrev.png)
 
 ## Getting Started
-
-### Prerequisites
-
-This project requires Node.js (which includes npm) installed on your system.
-- If you do not have Node.js installed, you can install it from [here](https://nodejs.org/en/download);
 
 ### Installation
 
@@ -20,31 +15,25 @@ This project requires Node.js (which includes npm) installed on your system.
 git  clone  https://github.com/Pampu-Rares/Guitar-Exercises-Site.git
 ```
 
-2. Change the default values of the `.env` file if you wish so:
-
-```env
-PORT=5050 # you can leave the port number as is
-MY_SECRET="I love JS" # change this with any other string
-```
-
-3. Open a terminal in the `Guitar-Exercises-Site` folder and write:
+2. Switch to the `Guitar-Exercises-Site` directory
 
 ```shell
-npm run dev
+cd  Guitar-Exercises-Site
 ```
 
-4. Open a tab in your browser to localhost:5050 or the port number you have written in the .env file.
+3. Switch to the `site-demo-version` branch
+
+```shell
+git  checkout site-demo-version
+```
+
+4. You can now host this project locally
 
 ## Usage
 
-### Login page
-
-After opening the webpage for the first time, you create (or sign into) your account
-![Login page](./readme_thumbnails/login.png)
-
 ### Homepage
 
-You will afterwards be forwarded to the homepage. Here, you can start adding, editing and completing exercises to practice your guitar skills. After finishing with a particular set of exercises, you can delete them and add new ones.
+You can start adding, editing and completing exercises to practice your guitar skills. After finishing with a particular set of exercises, you can delete them and add new ones.
 ![The homepage](./readme_thumbnails/addExercisePrev.png)
 
 This web application is intended as a way for you to have your practice exercises in one place and complete them in a gamified manner
