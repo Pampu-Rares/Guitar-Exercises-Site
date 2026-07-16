@@ -36,10 +36,13 @@ main {
     position: absolute;
     z-index: 3;
     inset: 0;
-    margin: auto;
+    margin: auto auto;
     height: fit-content;
+    max-height: 80vh;
     width: clamp(280px, 60%, 700px);
-    overflow: hidden;
+    max-width: 80vh;
+    overflow-y: auto;
+    overflow-x: hidden;
 
     flex-direction: column;
     align-items: center;

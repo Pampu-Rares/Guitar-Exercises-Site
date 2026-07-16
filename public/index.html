@@ -15,9 +15,9 @@
         <div id="timer-options">
             <select id="select-minutes">
                 <option value="1" default>1 minute</option>
-                <option value="0.5">30 seconds</option>
-                <option value="0.1">6 seconds</option>
                 <option value="2">2 minutes</option>
+                <option value="3">3 minutes</option>
+                <option value="4">4 minutes</option>
                 <option value="5">5 minutes</option>
                 <option value="10">10 minutes</option>
             </select>
@@ -25,7 +25,7 @@
         </div>
         <svg viewbox="0 0 100 100" id="clock">
             <circle id="progress-bar", cx="50", cy="50", r="47", fill="none", stroke="#8686AC", stroke-width="5" />
-            <text id="clock-text" x="50" y="50">0:00</text>
+            <text id="clock-text" x="50" y="50">1:00</text>
         </svg>
         <div id="volume-changer-container">
             <input type="range" value="100" id="volume-changer">
@@ -62,11 +62,14 @@
                 <option value="riff_practice">Riff Practice</option>
                 <option value="rithm_practice">Rithm Practice</option>
                 <option value="song_practice">Song Practice</option>
+                <option value="other">Other</option>
             </select>
             <label for="select-duration">Select the duration of the exercise:</label>
             <select id="select-duration">
                 <option value="1" default>1 minute</option>
                 <option value="2">2 minutes</option>
+                <option value="3">3 minutes</option>
+                <option value="4">4 minutes</option>
                 <option value="5">5 minutes</option>
                 <option value="10">10 minutes</option>
             </select>
