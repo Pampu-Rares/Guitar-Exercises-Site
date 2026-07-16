@@ -29,7 +29,8 @@ const exerciseNames = {
     "chord_changes": "Chord Changes",
     "riff_practice": "Riff Practice",
     "rithm_practice": "Rithm Practice",
-    "song_practice": "Song Practice"
+    "song_practice": "Song Practice",
+    "other": "Other"
 };
 
 completedExercisesFilter.addEventListener("click", () => {
