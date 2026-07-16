@@ -5,7 +5,7 @@ A full-stack web application which lets you keep track of your guitar exercises 
 
 ![A depiction of how the main page looks](./readme_thumbnails/guitarExercisesMainPrev.png)
 
-You can try this webpage for yourself [here](https://pampu-rares.github.io/Guitar-Exercises-Site/).
+You can try a demo of the webpage for yourself [here](https://pampu-rares.github.io/Guitar-Exercises-Site/). It does not have the account features due to the lack of a database server.
 
 ## Getting Started
 
