@@ -1,6 +1,5 @@
 # Guitar-Exercises-Site
 This is a simplified, frontend-only version of the full-stack application. It is designed to let you quickly explore the user interface and core features without needing to create an account or set up a local database.
-- for those interested of keeping on track with their guitar learning.
 - For the full experience, feel free to try out the full project on the main branch.
 
 ![A depiction of how the main page looks](./readme_thumbnails/guitarExercisesMainPrev.png)
