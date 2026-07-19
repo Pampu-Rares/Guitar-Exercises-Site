@@ -20,6 +20,9 @@ const completedExercisesFilter = document.getElementById("complete");
 const incompletedExercisesFilter = document.getElementById("incomplete");
 const allExercisesFilter = document.getElementById("all");
 
+const oldDate = localStorage.getItem("oldDate") || null
+const date = new Date()
+
 let exercises = JSON.parse(localStorage.getItem("exercises")) || [];;
 let editExerciseId;
 let userId = 1;
@@ -203,16 +206,12 @@ closeForm.addEventListener("click", () => {
     exerciseInputForm.style.display = "none";
 });
 
-getExercises()
-/*
-if(!token) {
-    addExerciseBtn.style.display = "none";
-    notLoggedInModal.showModal();
-    loginButton.addEventListener("click", () => {
-        window.location.href = '/auth';
-    });
-} else {
-    notLoggedInModal.close();
-    getExercises();
+
+if(date.toDateString() !== oldDate) {
+    exercises.forEach(exercice => {
+        exercice.completed = false
+    })
+    localStorage.setItem("exercises", JSON.stringify(exercises))
+    localStorage.setItem("oldDate", date.toDateString())
 }
-*/
+getExercises()
